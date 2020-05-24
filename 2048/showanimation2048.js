@@ -22,3 +22,7 @@ function showMoveAnimation(fromx, fromy, tox, toy){
 
 
 }
+
+function updateScore(score){
+  $('#score').text(score);
+}

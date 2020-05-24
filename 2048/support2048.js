@@ -97,3 +97,13 @@ function canMoveDown(){
 
   return false;    
 }
+
+function noMove(){
+  if ( canMoveDown(board) ||
+       canMoveLeft(board) ||
+       canMoveRight(board) ||
+       canMoveUp(board))
+       return false;
+  
+  return true;
+}

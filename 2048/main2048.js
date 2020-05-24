@@ -1,5 +1,6 @@
 var board = new Array();
 var score = 0;
+var hasConflicted = new Array();
 
 $(document).ready(function(){
     newgame();
@@ -7,7 +8,7 @@ $(document).ready(function(){
 
 function newgame(){
     init();
-
+    
     generateOneNumber();
     generateOneNumber();
 
@@ -28,6 +29,7 @@ function init(){
       for (var j=0; j<4; j++)
         board[i][j] = 0;
     }
+    score = 0;
     updateBoardView();
 
 }
@@ -86,26 +88,26 @@ $(document).keydown( function(event){
   switch(event.keyCode){
     case 37://left
       if (moveLeft()) {
-        generateOneNumber();
-        isGameOver();
+        setTimeout("generateOneNumber()", 210);
+        setTimeout("isGameOver()", 300);
       }
       break;
     case 38://up
     if (moveUp()) {
-      generateOneNumber();
-      isGameOver();
+      setTimeout("generateOneNumber()", 210);
+      setTimeout("isGameOver()", 300);
       }
       break;
     case 39://right
       if (moveRight()) {
-        generateOneNumber();
-        isGameOver();
+        setTimeout("generateOneNumber()", 210);
+        setTimeout("isGameOver()", 300);
       }
       break;
     case 40://down
       if (moveDown()) {
-        generateOneNumber();
-        isGameOver();
+        setTimeout("generateOneNumber()", 210);
+        setTimeout("isGameOver()", 300);
       }
       break;
     default:
@@ -115,7 +117,12 @@ $(document).keydown( function(event){
 });
 
 function isGameOver(){
+  if ( nospace(board) && noMove(board))
+    gameOver();
+}
 
+function gameOver(){
+  alert("GameOver!");
 }
 
 function moveLeft(){
@@ -139,6 +146,10 @@ function moveLeft(){
           //add
           board[i][k] += board[i][j];
           board[i][j] = 0;
+          //add score
+          score+=board[i][k];
+          updateScore(score);
+          
           continue;
         }
 
@@ -169,6 +180,10 @@ function moveUp(){
           //add
           board[k][j] += board[i][j];
           board[i][j] = 0;
+          //add score
+          score+=board[i][k];
+          updateScore(score);
+            
           continue;
         }
 
@@ -200,6 +215,10 @@ function moveRight(){
           //add
           board[i][k] += board[i][j];
           board[i][j] = 0;
+          //add score
+          score+=board[i][k];
+          updateScore(score);
+            
           continue;
         }
 
@@ -230,6 +249,10 @@ function moveDown(){
           //add
           board[k][j] += board[i][j];
           board[i][j] = 0;
+          //add score
+          score+=board[i][k];
+          updateScore(score);
+            
           continue;
         }
 
